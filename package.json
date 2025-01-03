@@ -1,0 +1,20 @@
+{
+  "name": "weekly-todo",
+  "version": "1.0.0",
+  "description": "This website will store tasks for a week and it only have the current week for each using(for now). The main framework will have 2 part: category and calender parts. ## Category   - In the category can be divided as number of jobs, or time duration.   - There also miscellaneous for other type of tasks. ## Calender    - Representing the current week status.   - Each week will show 7 days and 24 hours.   - Tasks can be assigned with time.   - Progress can be followed and displayed.   - Marks symbol(e.g ✔) can be used for marking/noting.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^7.1.2",
+    "html-webpack-plugin": "^5.6.3",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.0"
+  }
+}
