@@ -1,0 +1,9 @@
+.main-tabs {
+    background-color: lightblue;
+    padding: 10px;
+  }
+  
+  .main-tabs p {
+    color: darkblue;
+    font-size: 16px;
+  }
