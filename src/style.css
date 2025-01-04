@@ -1,9 +1,24 @@
-.main-tabs {
-    background-color: lightblue;
-    padding: 10px;
-  }
-  
-  .main-tabs p {
-    color: darkblue;
-    font-size: 16px;
-  }
+header.main-tabs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3em;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+}
+
+
+#calendar-table {
+  margin-top: 10px ;
+  float:right;
+  width: 60%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+#calendar-table th, #calendar-table td {
+  border: 1px solid black;
+  padding: 5px;
+  text-align: center;
+}
