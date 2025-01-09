@@ -14,7 +14,7 @@ class Day{
         }
         for(let i = 0; i < event.duration; i++){
             this.usedHours[event.time + i] = true;
-            this.hours[event.time+i] = event.name;
+            this.hours[event.time+i] = event;
     }
     console.log(`Event ${event.name} scheduled at ${event.time}:00 to ${event.time + event.duration}:00 added`);
 }
@@ -28,7 +28,7 @@ class Day{
                 continue;
             }
             console.log(`${i}:00`);
-            console.log(`  ${this.getEvents(i)}`);
+            console.log(`  ${this.getEvents(i).name}`);
         }
     }
 }
