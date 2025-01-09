@@ -1,3 +1,14 @@
+class Calendar{
+    constructor(){
+        this.days = [];
+        for (let i = 0; i < 7; i++){
+            this.days.push(new Day(i));
+        }
+    }
+}
+
+
+
 // document.addEventListener("DOMContentLoaded", function() {
 //     const calendarTable = document.getElementById("calendar-table");
 
