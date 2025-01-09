@@ -51,14 +51,16 @@ class DailyTasks {
   }
 }
 
-const dailyTasks = new DailyTasks();
-dailyTasks.addTask('workout');
+// const dailyTasks = new DailyTasks();
+// dailyTasks.addTask('workout');
+// // console.log(dailyTasks.listTasks());
+
+// dailyTasks.completeTask('workout');
+// // console.log(dailyTasks.listTasks());
+
+// dailyTasks.addTask('shower');
+
+// dailyTasks.resetTasks();
 // console.log(dailyTasks.listTasks());
 
-dailyTasks.completeTask('workout');
-// console.log(dailyTasks.listTasks());
-
-dailyTasks.addTask('shower');
-
-dailyTasks.resetTasks();
-console.log(dailyTasks.listTasks());
+export { Task, DailyTasks };
