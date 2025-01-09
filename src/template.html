@@ -9,13 +9,18 @@
 </head>
 
 <body>
-  <header class="main-tabs">
-    <p>Weekly ToDo</p>
-  </header>
-  <div id="calendar">
-    <table id ="calendar-table"></table>
-    <script src="calendar.js"></script>
+  <div id="daily-tasks">
+    <div id="task-list-container"></div>
+    <input type="text" id="task-name-input" placeholder="New Task">
+    <button id="add-task-button" type="button">Add Task</button>
   </div>
+  <div id="weekly-count">
+    <div id="weekly-count-container"></div>
+    <input type="text" id="weekly-task-input" placeholder="New Task">
+    <input type="text" id="weekly-goal" placeholder="10">
+    <button id="add-weekly-task" type="button">Add Task</button>
+  </div>
+  <div id="calendar"></div>
 </body>
 
 </html>

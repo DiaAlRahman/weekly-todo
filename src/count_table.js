@@ -9,7 +9,8 @@ class CountTask extends Task {
 
   // Increment the completed count by a specified amount, capped at the goal
   incrementCount(amount) {
-    this.completedCount = Math.min(this.completedCount + amount, this.goal); // Ensure it doesn't exceed the goal
+    if (amount > 0)
+      this.completedCount = Math.min(this.completedCount + amount, this.goal); // Ensure it doesn't exceed the goal
   }
 
   // Check if the goal has been reached
@@ -58,9 +59,71 @@ class WeeklyTasks extends DailyTasks {
   }
 }
 
-const weeklyTasks = new WeeklyTasks()
-weeklyTasks.addTask('Leetcode', 10);
-weeklyTasks.addTask('Mock', 3);
+class DisplayController {
+  constructor() {
+    this.weeklyTasks = new WeeklyTasks();
+    this.taskListContainer = document.getElementById('weekly-count-container');
+    this.addTaskButton = document.getElementById('add-weekly-task');
+    this.taskNameInput = document.getElementById('weekly-task-input');
+    this.taskGoalInput = document.getElementById('weekly-goal');
 
-weeklyTasks.updateTaskCount('Leetcode', 9)
-console.log(weeklyTasks.listTasks());
+    this.addTaskButton.addEventListener('click', () => this.addTask());
+    this.render();
+  }
+
+  render() {
+    this.taskListContainer.innerHTML = '';
+
+    this.weeklyTasks.tasks.forEach((task) => {
+      const taskElement = document.createElement('div');
+      taskElement.classList.add('weekly-task-item');
+      const status = task.isDone ? "Done" : "Not Done";
+
+      taskElement.innerHTML = `
+        <label>
+          ${task.name} - ${task.completedCount}/${task.goal} (${status})
+        </label>
+        <input type="number" class="update-count" data-name="${task.name}" placeholder="Add Count">
+        <button class="update-task" data-name="${task.name}">Update</button>
+      `;
+
+      taskElement.querySelector('.update-task').addEventListener('click', () => {
+        const countInput = taskElement.querySelector('.update-count');
+        const count = parseInt(countInput.value, 10);
+
+        if (!isNaN(count)) {
+          this.updateTaskCount(task.name, count);
+          countInput.value = '';
+        }
+      });
+
+      this.taskListContainer.appendChild(taskElement);
+    });
+  }
+
+  addTask() {
+    const taskName = this.taskNameInput.value.trim();
+    const goal = parseInt(this.taskGoalInput.value, 10);
+
+    if (taskName && !isNaN(goal) && goal > 0) {
+      this.weeklyTasks.addTask(taskName, goal);
+      this.taskNameInput.value = '';
+      this.taskGoalInput.value = '';
+      this.render();
+    }
+  }
+
+  updateTaskCount(taskName, count) {
+    this.weeklyTasks.updateTaskCount(taskName, count);
+    this.render();
+  }
+}
+
+export { DisplayController };
+
+// const weeklyTasks = new WeeklyTasks()
+// weeklyTasks.addTask('Leetcode', 10);
+// weeklyTasks.addTask('Mock', 3);
+
+// weeklyTasks.updateTaskCount('Leetcode', 9);
+// console.log(weeklyTasks.listTasks());

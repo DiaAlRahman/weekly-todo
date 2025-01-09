@@ -51,6 +51,69 @@ class DailyTasks {
   }
 }
 
+class DisplayController {
+  constructor() {
+    this.dailyTasks = new DailyTasks();
+    this.taskListContainer = document.getElementById('task-list-container');
+    this.addTaskButton = document.getElementById('add-task-button');
+    this.taskNameInput = document.getElementById('task-name-input');
+    this.addTaskButton.addEventListener('click', () => this.addTask());
+    this.render();
+  }
+
+  render() {
+    this.taskListContainer.innerHTML = '';
+
+    this.dailyTasks.tasks.forEach(task => {
+      const taskElement = document.createElement('div');
+      taskElement.classList.add('task-item');
+      taskElement.innerHTML = `
+        <label>
+          <input type="checkbox" class="task-status" data-name="${task.name}" ${task.isDone ? 'checked' : ''}>
+          ${task.name}
+        </label>
+        <button class="remove-task" data-name="${task.name}">Remove</button>
+      `;
+
+      taskElement.querySelector('.task-status').addEventListener('change', (event) => {
+        if (event.target.checked) {
+          this.completeTask(task.name);
+        } else {
+          this.incompleteTask(task.name);
+        }
+      });
+
+      taskElement.querySelector('.remove-task').addEventListener('click', () => this.removeTask(task.name));
+
+      this.taskListContainer.appendChild(taskElement);
+    });
+  }
+
+  addTask() {
+    const taskName = this.taskNameInput.value.trim();
+    if (taskName) {
+      this.dailyTasks.addTask(taskName);
+      this.taskNameInput.value = '';
+      this.render();
+    }
+  }
+
+  completeTask(taskName) {
+    this.dailyTasks.completeTask(taskName);
+    this.render();
+  }
+
+  incompleteTask(taskName) {
+    this.dailyTasks.incompleteTask(taskName);
+    this.render();
+  }
+
+  removeTask(taskName) {
+    this.dailyTasks.removeTask(taskName);
+    this.render();
+  }
+}
+
 // const dailyTasks = new DailyTasks();
 // dailyTasks.addTask('workout');
 // // console.log(dailyTasks.listTasks());
@@ -63,4 +126,4 @@ class DailyTasks {
 // dailyTasks.resetTasks();
 // console.log(dailyTasks.listTasks());
 
-export { Task, DailyTasks };
+export { Task, DailyTasks, DisplayController };
