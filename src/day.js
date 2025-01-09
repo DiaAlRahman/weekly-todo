@@ -1,40 +1,49 @@
+import { DailyTasks } from "./daily_tasks.js";
+import { CountTask, WeeklyTasks } from "./count_table.js";
+
 class Day {
-    constructor(date) {
-        this.date = date;
-        this.usedHours = Array(24).fill(false);
-        this.hours = {};
+    constructor(allTasks) {
+        this.tasks = allTasks;  // these are the tasks that im dealing with
+        this.hours = Array(24).fill("");
     }
 
-    addEvent(event) {
-        for (let i = 0; i < event.duration; i++) {
-            if (this.usedHours[event.time + i]) {
-                console.log(`Time slot at ${event.time + i} is already taken`);
-                return;
+    addTask(task, startTime, duration) {
+        // check if task object is an instance of CountTask
+        if (task instanceof CountTask) {
+            // ask user for how many today (for eg: 3 / 10 leetcodes in 5 hours)
+        }
+        // checks if the slot is empty
+        let isAvailable = true;
+        let endTime = startTime + duration - 1;
+        for (let hour = startTime; hour <= endTime; hour++) {
+            if (this.hours[hour] !== "")
+                isAvailable = false;
+        }
+        if (isAvailable) {
+            for (let hour = startTime; hour <= endTime; hour++) {
+                this.hours[hour] = task.name;
             }
         }
-        for (let i = 0; i < event.duration; i++) {
-            this.usedHours[event.time + i] = true;
-            this.hours[event.time + i] = event;
-        }
-        console.log(`Event ${event.name} scheduled at ${event.time}:00 to ${event.time + event.duration}:00 added`);
     }
-    getEvents(hour) {
-        return this.hours[hour] || [];
-    }
-    printEvents() {
-        for (let i = 0; i < 24; i++) {
-            if (this.getEvents(i).length === 0) {
-                // console.log("  No events scheduled");
-                continue;
-            }
-            console.log(`${i}:00 ${this.getEvents(i).name}`);
-        }
+
+    toString() {
+        return `${this.hours}`
     }
 }
-const day = new Day(0);
-day.addEvent({ time: 0, duration: 2, name: "workout" });
-day.addEvent({ time: 1, duration: 1, name: "meeting" });
-day.addEvent({ time: 3, duration: 2, name: "study" });
-day.addEvent({ time: 5, duration: 4, name: "coding" });
-day.addEvent({ time: 6, duration: 1, name: "break" });
-day.printEvents();
+
+const dailies = new DailyTasks();
+const weeklies = new WeeklyTasks();
+
+const workout = dailies.addTask('workout');
+const shower = dailies.addTask('shower');
+const run = dailies.addTask('run');
+
+const allTasks = dailies.tasksList;
+
+const monday = new Day(allTasks);
+monday.addTask(shower, 0, 2);
+monday.addTask(workout, 0, 2);
+monday.addTask(workout, 2, 5);
+monday.addTask(run, 10, 8);
+
+console.log(monday.toString())

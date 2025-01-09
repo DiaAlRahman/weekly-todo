@@ -33,6 +33,7 @@ class WeeklyTasks extends DailyTasks {
   addTask(task_name, count) {
     const newTask = new CountTask(task_name, count)
     this.tasks.push(newTask);
+    return newTask;
   }
 
   updateTaskCount(task_name, count) {
@@ -119,7 +120,7 @@ class DisplayController {
   }
 }
 
-export { DisplayController };
+export { CountTask, WeeklyTasks, DisplayController };
 
 // const weeklyTasks = new WeeklyTasks()
 // weeklyTasks.addTask('Leetcode', 10);

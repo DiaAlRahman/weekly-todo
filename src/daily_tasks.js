@@ -23,9 +23,14 @@ class DailyTasks {
     this.tasks = []; // Array to store Task objects
   }
 
+  get tasksList() {
+    return this.tasks;
+  }
+
   addTask(task_name) {
     const newTask = new Task(task_name)
     this.tasks.push(newTask);
+    return newTask;
   }
 
   removeTask(taskName) {

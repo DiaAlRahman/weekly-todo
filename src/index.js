@@ -4,5 +4,8 @@ import { DisplayController as WeeklyCountsDisplayController } from "./count_tabl
 const displayDailyTasks = new DailyTasksDisplayController();
 const displayWeeklyCounts = new WeeklyCountsDisplayController();
 
+// all Tasks = [daily tasks + weekly tasks]
+// init Calendar(all Tasks)
+
 
 
