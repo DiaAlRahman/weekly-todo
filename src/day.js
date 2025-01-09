@@ -15,9 +15,11 @@ class Day{
             }
             return;
         }
+        for(let i = 0; i < event.duration; i++){
+            this.usedHours[event.time + i] = true;
         this.events.push(event);
     }
-
+}
     getEvents(hour){
         return this.hours[hour]||[];
     }
