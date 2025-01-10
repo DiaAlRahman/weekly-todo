@@ -1,9 +1,14 @@
+import { Day } from "./day.js";
+
 class Calendar{
-    constructor(){
-        this.days = [];
-        for (let i = 0; i < 7; i++){
-            this.days.push(new Day(i));
-        }
+    constructor() {
+        // this.monday = new Day();
+        // this.tuesday = new Day();
+        // this.wednesday = new Day();
+        // this.thursday = new Day();
+        // this.friday = new Day();
+        // this.saturday = new Day();
+        // this.sunday = new Day();
     }
 }
 

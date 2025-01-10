@@ -18,12 +18,14 @@ class Day {
         for (let hour = startTime; hour <= endTime; hour++) {
             if (this.hours[hour] !== "")
                 isAvailable = false;
+                break;
         }
         if (isAvailable) {
             for (let hour = startTime; hour <= endTime; hour++) {
                 this.hours[hour] = task.name;
             }
         }
+        return isAvailable;
     }
 
     toString() {
