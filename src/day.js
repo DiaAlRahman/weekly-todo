@@ -2,8 +2,8 @@ import { DailyTasks } from "./daily_tasks.js";
 import { CountTask, WeeklyTasks } from "./count_table.js";
 
 class Day {
-    constructor(allTasks) {
-        this.tasks = allTasks;  // these are the tasks that im dealing with
+    constructor() {
+        this.tasks = [];  // these are the tasks that im dealing with
         this.hours = Array(24).fill("");
     }
 
@@ -33,19 +33,20 @@ class Day {
     }
 }
 
-const dailies = new DailyTasks();
-const weeklies = new WeeklyTasks();
+// const dailies = new DailyTasks();
+// const weeklies = new WeeklyTasks();
 
-const workout = dailies.addTask('workout');
-const shower = dailies.addTask('shower');
-const run = dailies.addTask('run');
+// const workout = dailies.addTask('workout');
+// const shower = dailies.addTask('shower');
+// const run = dailies.addTask('run');
 
-const allTasks = dailies.tasksList;
+// const allTasks = dailies.tasksList;
 
-const monday = new Day(allTasks);
-monday.addTask(shower, 0, 2);
-monday.addTask(workout, 0, 2);
-monday.addTask(workout, 2, 5);
-monday.addTask(run, 10, 8);
+// const monday = new Day(allTasks);
+// monday.addTask(shower, 0, 2);
+// monday.addTask(workout, 0, 2);
+// monday.addTask(workout, 2, 5);
+// monday.addTask(run, 10, 8);
 
-console.log(monday.toString())
+// console.log(monday.toString())
+export { Day };
