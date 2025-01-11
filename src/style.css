@@ -22,3 +22,10 @@ header.main-tabs {
   padding: 5px;
   text-align: center;
 }
+#weekly-tasks-dropdown {
+  display: inline-block;
+  margin-top: 10px ;
+  width: 30%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
