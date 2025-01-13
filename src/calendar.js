@@ -22,6 +22,7 @@ class DisplayController {
         this.calendar = new Calendar();
         this.weeklyTasks = new WeeklyTasks();
         this.calendarTable = document.getElementById("calendar-table");
+        this.dailyTaskContainer = document.getElementById("daily-count-container");
         this.taskListContainer = document.getElementById('weekly-count-container');
         this.dropdown = document.getElementById("weekly-tasks-dropdown");
         this.addWeeklyTaskButton = document.getElementById("add-weekly-task");
@@ -69,30 +70,32 @@ class DisplayController {
     }
     render() {
         this.taskListContainer.innerHTML = '';
-    
+        this.dailyTaskContainer.innerHTML = '';
         this.weeklyTasks.tasks.forEach((task) => {
           const taskElement = document.createElement('div');
+          const dailyTaskElement = document.createElement('div');
           taskElement.classList.add('weekly-task-item');
           const status = task.isDone ? "Done" : "Not Done";
-    
+          
           taskElement.innerHTML = `
             <label>
               ${task.name} - ${task.completedCount}/${task.goal} (${status})
-            </label>
-            <input type="number" class="update-count" data-name="${task.name}" placeholder="Add Count">
-            <button class="update-task" data-name="${task.name}">Update</button>
-          `;
+            </label>`;
+            dailyTaskElement.innerHTML = `${task.name} <input type="checkbox" class="task-checkbox" ${task.isDone ? 'checked' : ''}> `;
+            // <input type="number" class="update-count" data-name="${task.name}" placeholder="Add Count">
+            // <button class="update-task" data-name="${task.name}">Update</button>
+      
     
-          taskElement.querySelector('.update-task').addEventListener('click', () => {
-            const countInput = taskElement.querySelector('.update-count');
-            const count = parseInt(countInput.value, 10);
+          // taskElement.querySelector('.update-task').addEventListener('click', () => {
+          //   const countInput = taskElement.querySelector('.update-count');
+          //   const count = parseInt(countInput.value, 10);
     
-            if (!isNaN(count)) {
-              this.updateTaskCount(task.name, count);
-              countInput.value = '';
-            }
-          });
-    
+          //   if (!isNaN(count)) {
+          //     this.updateTaskCount(task.name, count);
+          //     countInput.value = '';
+          //   }
+          // });
+          this.dailyTaskContainer.appendChild(dailyTaskElement);
           this.taskListContainer.appendChild(taskElement);
         });
       }

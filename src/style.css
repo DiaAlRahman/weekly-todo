@@ -16,7 +16,15 @@ header.main-tabs {
   border-collapse: collapse;
   table-layout: fixed;
 }
-
+.box-container {
+  border: 1px solid #000; /* Black border */
+  width: 500px; /* Set a width */
+  height: 200px; /* Set a height */
+  padding: 10px; 
+  margin: 10px; 
+  border-radius: 5px; /* Rounded corners */
+  background-color: #f9f9f9; /* Light grey background */
+}
 #calendar-table th, #calendar-table td {
   border: 1px solid black;
   padding: 5px;
